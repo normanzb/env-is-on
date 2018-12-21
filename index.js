@@ -31,7 +31,7 @@ var bridges = [];
 
 if (args.mappings) {
   mappings = includeAll({
-    dirname: path.join(__dirname, args.mappings),
+    dirname: path.resolve(args.mappings),
     filter:  /.*?.js$/,
   });
 }
@@ -42,11 +42,11 @@ else {
 if (args.bridges) {
   if (Array.isArray(args.bridges) && args.bridges.length > 0) {
     args.bridges.forEach(function(item){
-      bridges.push(require(path.join(__dirname, item)));
+      bridges.push(require(path.resolve(item)));
     });
   }
   else {
-    bridges.push(require(path.join(__dirname, args.bridges)));
+    bridges.push(require(path.resolve(args.bridges)));
   }
 }
 
