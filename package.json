@@ -1,0 +1,23 @@
+{
+  "name": "@normanzb/envision",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postversion": "git push && git push --tags && npm publish"
+  },
+  "bin": {
+    "env-sim": "./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-mitm-proxy": "git+https://github.com/normanzb/node-http-mitm-proxy.git#v0.6.1",
+    "include-all": "^4.0.3",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0"
+  }
+}
