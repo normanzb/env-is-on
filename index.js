@@ -42,11 +42,11 @@ else {
 if (args.bridges) {
   if (Array.isArray(args.bridges) && args.bridges.length > 0) {
     args.bridges.forEach(function(item){
-      bridges.push(require(item));
+      bridges.push(require(path.join(__dirname, item)));
     });
   }
   else {
-    bridges.push(require(args.bridges));
+    bridges.push(require(path.join(__dirname, args.bridges)));
   }
 }
 
