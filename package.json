@@ -1,7 +1,7 @@
 {
   "name": "env-is-on",
   "version": "1.0.0",
-  "description": "",
+  "description": "Development environment simulator",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,5 +19,9 @@
   },
   "devDependencies": {
     "eslint": "^5.7.0"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/normanzb/env-is-on.git"
   }
 }
