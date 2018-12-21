@@ -2,6 +2,7 @@
 
 'use strict';
 
+const homedir = require('os').homedir();
 const path = require('path');
 const Proxy = require('http-mitm-proxy');
 const https = require('https');
@@ -16,10 +17,12 @@ var args = parseArgs(process.argv.slice(2), {
     alias: {
         'mappings': 'm',
         'bridges': 'b',
-        'port': 'p'
+        'port': 'p',
+        'ca': 'c'
     },
     default: {
-        'port': PROXY_PORT
+        'port': PROXY_PORT,
+        'ca': path.join(homedir, '.env-is-on')
     }
 });
 
@@ -299,11 +302,12 @@ function startProxy() {
       rejectUnauthorized: false 
     }), 
     port: args.port, 
-    timeout: 2147483647
+    timeout: 2147483647,
+    sslCaDir: args.ca
   });
 
   console.log(yellow(`Proxy server is up on port ${PROXY_PORT}, \n please configure your browser accordingly.`));
-  console.log(yellow(`Don't forget to trust the root ca which you can find in ./.http-mitm-proxy/certs/ca.pem`));
+  console.log(yellow(`Don't forget to trust the root ca which you can find in ${args.ca}`));
 }
 
 startProxy();

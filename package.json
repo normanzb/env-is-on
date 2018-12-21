@@ -21,7 +21,7 @@
     "eslint": "^5.7.0"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/normanzb/env-is-on.git"
+    "type": "git",
+    "url": "https://github.com/normanzb/env-is-on.git"
   }
 }
