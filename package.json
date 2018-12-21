@@ -1,5 +1,5 @@
 {
-  "name": "@normanzb/envision",
+  "name": "env-is-on",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "postversion": "git push && git push --tags && npm publish"
   },
   "bin": {
-    "env-sim": "./index.js"
+    "env-is-on": "./index.js"
   },
   "author": "",
   "license": "ISC",

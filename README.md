@@ -1,12 +1,12 @@
 # Development Environment Simulator
 
-Envision helps you simulate web app running environment, essentially it runs a "man in the middle" proxy that rewrites the url, and bridges API requests to any environment you choose, so that you can test your code like it is running on the target environment.
+This tool helps you simulate web app running environment, essentially it runs a "man in the middle" proxy that rewrites the url, and bridges API requests to any environment you choose, so that you can test your code like it is running on the target environment.
 
 ## Installation
 
 ### From NPM
 
-* `npm install @normanzb/envision`
+* `npm install env-is-on`
 
 ### From source
 * Git clone this repo
@@ -14,7 +14,7 @@ Envision helps you simulate web app running environment, essentially it runs a "
 * run `node ./`
 
 ## Usage
-* Run `env-sim -m [path to mapping config] -b [path to bridging config] -p [the port you name it]`, e.g `env-sim -b ./bridges/my-app`
+* Run `env-is-on -m [path to mapping config] -b [path to bridging config] -p [the port you name it]`, e.g `env-is-on -b ./bridges/my-app`
 * Open `.http-mitm-proxy/ca.pem` and trust this root ca. 
 * Set your browser's proxy to localhost:[the port you have specified]
 
