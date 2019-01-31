@@ -123,8 +123,8 @@ function isBridgeItemMatched(bridgeItem, {host, pathname, referer}) {
 function startProxy() {
   var proxy = Proxy();
 
-  proxy.onError(function(ctx, err) {
-    console.error('proxy error:', err);
+  proxy.onError(function(ctx, err, kind) {
+    console.error('proxy error:', kind, err);
   });
 
   proxy.onRequest(function(ctx, callback) {
