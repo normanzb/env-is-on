@@ -1,6 +1,6 @@
 # Development Environment Simulator
 
-This tool helps you simulate web app running environment, essentially it runs a "man in the middle" proxy that rewrites the url, and bridges API requests to any environment you choose, so that you can test your code like it is running on the target environment.
+This tool simulates web app running environment by running a "man in the middle" proxy that rewrites or bridges requests to any environment you choose. It enables you to develop and test local module as part of the whole infrastructure in targetting environment.
 
 ## Installation
 
