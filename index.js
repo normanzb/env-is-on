@@ -7,7 +7,7 @@ const path = require('path');
 const Proxy = require('http-mitm-proxy');
 const https = require('https');
 const parseArgs = require('minimist');
-const includeAll = require('include-all');
+const requireAll = require('require-all');
 const REQU_CHUNK_ARRAY_KEY = '#$requ_chunks';
 const RESP_CHUNK_ARRAY_KEY = '#$resp_chunks';
 const REPLACE_KEY = '#!update_response_headers';
@@ -32,9 +32,10 @@ var mappings;
 var bridges = [];
 
 if (args.mappings) {
-  mappings = includeAll({
+  mappings = requireAll({
     dirname: path.resolve(args.mappings),
     filter:  /.*?.js$/,
+    recursive: true
   });
 }
 else {

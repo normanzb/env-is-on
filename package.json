@@ -14,8 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "http-mitm-proxy": "git+https://github.com/normanzb/node-http-mitm-proxy.git#v0.6.2",
-    "include-all": "^4.0.3",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "require-all": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^5.7.0"
