@@ -18,6 +18,12 @@ This tool simulates web app running environment by running a "man in the middle"
 * Open `.http-mitm-proxy/ca.pem` and trust this root ca. 
 * Set your browser's proxy to localhost:[the port you have specified]
 
+### Arguments
+
+* -mapping, -m: path to a folder contains mapping files
+* -bridges, -b: path to a bridge file
+* -avoid-mapping-when-bridged, -a: default to `true`, mapping file will be executed the request has been bridged.
+
 ## Bridge and Mapping
 
 Bridge is simple request redirection between 2 different origins while mapping can do much more complex stuffs such as replace page content.
