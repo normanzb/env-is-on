@@ -18,11 +18,13 @@ var args = parseArgs(process.argv.slice(2), {
         'mappings': 'm',
         'bridges': 'b',
         'port': 'p',
-        'ca': 'c'
+        'ca': 'c',
+        'avoid-mapping-when-bridged': 'a'
     },
     default: {
         'port': PROXY_PORT,
-        'ca': path.join(homedir, '.env-is-on')
+        'ca': path.join(homedir, '.env-is-on'),
+        'avoid-mapping-when-bridged': true
     }
 });
 
@@ -152,7 +154,7 @@ function startProxy() {
       }
     }
 
-    if (!isBridged) {
+    if (!isBridged || args['avoid-mapping-when-bridged'] !== true) {
       for (var key in mappings) {
         let mapping = mappings[key];
 
