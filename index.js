@@ -211,25 +211,25 @@ function startProxy() {
     }
   });
 
-  proxy.onRequestEnd(function(ctx, callback){
-    if (ctx.mappingData && ctx.mappingData[REQU_CHUNK_ARRAY_KEY]) {
-      var buffer = Buffer.concat(ctx.mappingData[REQU_CHUNK_ARRAY_KEY]);
-      var request = buffer.toString();
-      var host = ctx.clientToProxyRequest.headers.host;
+  proxy.onRequestEnd((ctx, callback) => {
+    (async () => {
+      if (ctx.mappingData && ctx.mappingData[REQU_CHUNK_ARRAY_KEY]) {
+        var buffer = Buffer.concat(ctx.mappingData[REQU_CHUNK_ARRAY_KEY]);
+        var request = buffer.toString();
+        var host = ctx.clientToProxyRequest.headers.host;
 
-      for (var key in mappings) {
-        let mapping = mappings[key];
-        if (mapping.host === host) {
-          if (typeof mapping.onRequest === 'function') {
-            request = mapping.onRequest(ctx, request, ctx.mappingData[key]);
+        for (var key in mappings) {
+          let mapping = mappings[key];
+          if (mapping.host === host) {
+            if (typeof mapping.onRequest === 'function') {
+              request = await mapping.onRequest(ctx, request, ctx.mappingData[key]);
+            }
           }
         }
+
+        ctx.proxyToServerRequest.end(Buffer.from(request));
       }
-
-      ctx.proxyToServerRequest.end(Buffer.from(request));
-    }
-
-    callback();
+    })().then(callback)
   });
 
   proxy.onResponseHeaders(function (ctx, callback) {
@@ -278,25 +278,25 @@ function startProxy() {
     }
   });
 
-  proxy.onResponseEnd(function(ctx, callback){
-    if (ctx.mappingData && ctx.mappingData[RESP_CHUNK_ARRAY_KEY]) {
-      var buffer = Buffer.concat(ctx.mappingData[RESP_CHUNK_ARRAY_KEY]);
-      var response = buffer.toString();
-      var host = ctx.clientToProxyRequest.headers.host;
+  proxy.onResponseEnd((ctx, callback) => {
+    (async () => {
+      if (ctx.mappingData && ctx.mappingData[RESP_CHUNK_ARRAY_KEY]) {
+        var buffer = Buffer.concat(ctx.mappingData[RESP_CHUNK_ARRAY_KEY]);
+        var response = buffer.toString();
+        var host = ctx.clientToProxyRequest.headers.host;
 
-      for (var key in mappings) {
-        let mapping = mappings[key];
-        if (mapping.host === host) {
-          if (typeof mapping.onResponse === 'function') {
-            response = mapping.onResponse(ctx, response, ctx.mappingData[key]);
+        for (var key in mappings) {
+          let mapping = mappings[key];
+          if (mapping.host === host) {
+            if (typeof mapping.onResponse === 'function') {
+              response = await mapping.onResponse(ctx, response, ctx.mappingData[key]);
+            }
           }
         }
+
+        ctx.proxyToClientResponse.end(Buffer.from(response));
       }
-
-      ctx.proxyToClientResponse.end(Buffer.from(response));
-    }
-
-    callback();
+    })().then(callback)
   });
 
   proxy.listen({
